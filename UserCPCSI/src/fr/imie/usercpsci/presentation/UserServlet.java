@@ -55,11 +55,15 @@ public class UserServlet extends HttpServlet {
 		
 		String factionParameter = request.getParameter("faction");
 		
-		Faction faction = Faction.valueOf(factionParameter);
+		Faction faction =null;
 		
+		if(factionParameter!=null){
+			faction = Faction.valueOf(factionParameter);
+			//request.setAttribute("factionParameter", factionParameter);
+		}
 		
 		for (UserData userData : users) {
-			if(userData.getFaction().equals(faction)){
+			if(faction==null || userData.getFaction().equals(faction)){
 				filteredUsers.add(userData);
 			}
 		}

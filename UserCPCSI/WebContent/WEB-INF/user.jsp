@@ -10,10 +10,18 @@
 </head>
 <body>
 	<form action="User" method="post">
+		<%
+			String selectedFaction = request.getParameter("faction");
+		%>
 		<label for="gentil">gentil</label> <input id="gentil" type="radio"
-			name="faction" value="gentil" /> <label for="mechant">méchant</label><input
-			id="mechant" type="radio" name="faction" value="mechant" /> <input
-			type="submit">
+			name="faction" value="gentil"
+			<%if (selectedFaction != null
+					&& selectedFaction.compareTo("gentil") == 0) {%>
+			checked <%}%> /> <label for="mechant">méchant</label><input
+			id="mechant" type="radio" name="faction" value="mechant"
+			<%if (selectedFaction != null
+					&& selectedFaction.compareTo("mechant") == 0) {%>
+			checked <%}%> /> <input type="submit">
 	</form>
 	<ul>
 		<%
