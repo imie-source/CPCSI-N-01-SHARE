@@ -45,26 +45,32 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		// récupération des users en session
-		List<UserData> users = (List<UserData>) request.getSession()
-				.getAttribute("users");
-		// récupération des paramètres de la requête
-		String nomParameter = request.getParameter("login");
-		String passwParameter = request.getParameter("passw");
-		// recherche du user par son nom dans la session
-		UserData loginUser = null;
-		for (UserData userData : users) {
-			if (userData.getNom().compareTo(nomParameter) == 0) {
-				loginUser = userData;
-			}
-		}
-		// vérification du passw et renseignement de la session pour stocker
-		// l'authentification
-		if (loginUser != null && loginUser.getPassw().compareTo(passwParameter) == 0) {
-				request.getSession().setAttribute
-				 ("connectedUser", loginUser);
-		}else{
+		if (request.getParameter("deconnection")!=null) {
+			request.getSession().removeAttribute("connectedUser");
 			response.sendRedirect("login.html");
+		} else {
+
+			// récupération des users en session
+			List<UserData> users = (List<UserData>) request.getSession()
+					.getAttribute("users");
+			// récupération des paramètres de la requête
+			String nomParameter = request.getParameter("login");
+			String passwParameter = request.getParameter("passw");
+			// recherche du user par son nom dans la session
+			UserData loginUser = null;
+			for (UserData userData : users) {
+				if (userData.getNom().compareTo(nomParameter) == 0) {
+					loginUser = userData;
+				}
+			}
+			// vérification du passw et renseignement de la session pour stocker
+			// l'authentification
+			if (loginUser != null
+					&& loginUser.getPassw().compareTo(passwParameter) == 0) {
+				request.getSession().setAttribute("connectedUser", loginUser);
+			} else {
+				response.sendRedirect("login.html");
+			}
 		}
 
 	}
