@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("post de login");
+
 		// récupération des users en session
 		List<UserData> users = (List<UserData>) request.getSession()
 				.getAttribute("users");
@@ -60,11 +60,11 @@ public class LoginServlet extends HttpServlet {
 		}
 		// vérification du passw et renseignement de la session pour stocker
 		// l'authentification
-		if (loginUser != null) {
-			if (loginUser.getPassw().compareTo(passwParameter) == 0) {
+		if (loginUser != null && loginUser.getPassw().compareTo(passwParameter) == 0) {
 				request.getSession().setAttribute
 				 ("connectedUser", loginUser);
-			}
+		}else{
+			response.sendRedirect("login.html");
 		}
 
 	}

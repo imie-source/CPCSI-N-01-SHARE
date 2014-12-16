@@ -49,10 +49,22 @@ public class SecurityFilter implements Filter {
 				.getAttribute("connectedUser");
 		if (!httpServletRequest.getRequestURI().contains("login")
 				&& connectedUser == null) {
+			httpServletRequest.getSession().setAttribute("urlRequired",
+					httpServletRequest.getRequestURL().toString());
 			httpServletResponse.sendRedirect("login.html");
 		}
+
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
+		// le chain.doFilter à déclenché le post de login et donc rempli la
+		// session
+		if (connectedUser == null
+				&& (UserData) httpServletRequest.getSession().getAttribute(
+						"connectedUser") != null) {
+			String urlRequired = (String) httpServletRequest.getSession().getAttribute("urlRequired");
+			httpServletResponse.sendRedirect(urlRequired);
+			httpServletRequest.getSession().removeAttribute(urlRequired);
+		}
 	}
 
 	/**
