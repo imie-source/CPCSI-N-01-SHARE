@@ -1,0 +1,33 @@
+#java compile
+*.class
+
+#merge conflict
+*.orig
+
+#gedit
+*.*~
+.*~
+
+# temporary files
+*~
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+#eclipse
+.settings
+.classpath
+.project
+build/*
+build
+bin
+
+# gradle
+.gradle/
+.gradle
+.gradle/*
+
+
+
