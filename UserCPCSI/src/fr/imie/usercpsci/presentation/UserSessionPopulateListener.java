@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
+import fr.imie.usercpsci.model.Faction;
 import fr.imie.usercpsci.model.UserData;
 
 /**
@@ -31,18 +32,22 @@ public class UserSessionPopulateListener implements HttpSessionListener {
          userData1.setNom("Kent");
          userData1.setPrenom("Clark");
          userData1.setPassw("superman");
+         userData1.setFaction(Faction.gentil);
          UserData userData2 = new UserData();
          userData2.setNom("Wayne");
          userData2.setPrenom("Bruce");
          userData2.setPassw("batman");
+         userData2.setFaction(Faction.gentil);
          UserData userData3 = new UserData();
          userData3.setNom("Parker");
          userData3.setPrenom("Peter");
          userData3.setPassw("spiderman");
+         userData3.setFaction(Faction.gentil);
          UserData userData4 = new UserData();
          userData4.setNom("Dent");
          userData4.setPrenom("Harvey");
          userData4.setPassw("doubleface");
+         userData4.setFaction(Faction.mechant);
          List<UserData> users = new ArrayList<UserData>();
          
          users.add(userData1);

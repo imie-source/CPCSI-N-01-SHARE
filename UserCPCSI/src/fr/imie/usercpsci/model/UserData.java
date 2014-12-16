@@ -17,6 +17,7 @@ public class UserData {
 	private Date dateNaiss;
 	private String eMail;
 	private String passw;
+	private Faction faction;
 	
 	/**
 	 * 
@@ -83,6 +84,16 @@ public class UserData {
 
 	public void setPassw(String passw) {
 		this.passw = passw;
+	}
+
+
+	public Faction getFaction() {
+		return faction;
+	}
+
+
+	public void setFaction(Faction faction) {
+		this.faction = faction;
 	}
 
 
